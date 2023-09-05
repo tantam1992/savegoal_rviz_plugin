@@ -1,0 +1,9 @@
+<library path="lib/libsavegoal_rviz_plugin">
+  <class name="savegoal_rviz_plugin/SaveGoal"
+         type="savegoal_rviz_plugin::SaveGoalTool"
+         base_class_type="rviz::Tool">
+    <description>
+      Tool for save goal in rviz.
+    </description>
+  </class>
+</library>
