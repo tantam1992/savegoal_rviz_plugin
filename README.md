@@ -1,0 +1,1 @@
+A plugin developed for saving goal point in Rviz
