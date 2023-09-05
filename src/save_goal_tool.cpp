@@ -34,6 +34,8 @@
 #include <rviz/ogre_helpers/arrow.h>
 #include <rviz/properties/string_property.h>
 
+#include <QFileDialog>
+
 #include "save_goal_tool.h"
 
 namespace savegoal_rviz_plugin
@@ -71,8 +73,29 @@ void SaveGoalTool::onPoseSet(double x, double y, double theta)
            goal.pose.orientation.x, goal.pose.orientation.y, goal.pose.orientation.z,
            goal.pose.orientation.w, theta);
   // pub_.publish(goal);
+
   // Code to save the goal point and orientation to a YAML file.
-  // std::string yaml_filename = QFileDialog::getSaveFileName(nullptr, "Save Goal Point", "", "YAML Files (*.yaml)").toStdString();
+  std::string yaml_filename = QFileDialog::getSaveFileName(nullptr, "Save Goal Point", "", "YAML Files (*.yaml)").toStdString();
+  if (!yaml_filename.empty())
+  {
+    // Create a YAML file and write the goal point data.
+    std::ofstream yaml_file(yaml_filename);
+    
+    if (yaml_file.is_open())
+    {
+      // Write the position and orientation to the YAML file.
+      yaml_file << "goal_x: " << goal.pose.position.x << std::endl;
+      yaml_file << "goal_y: " << goal.pose.position.y << std::endl;
+      // yaml_file << "goal_z: " << goal.pose.position.z << std::endl;
+      // yaml_file << "goal_orientation_x: " << goal.pose.orientation.x << std::endl;
+      // yaml_file << "goal_orientation_y: " << goal.pose.orientation.y << std::endl;
+      yaml_file << "goal_orientation_z: " << goal.pose.orientation.z << std::endl;
+      yaml_file << "goal_orientation_w: " << goal.pose.orientation.w << std::endl;
+      
+      yaml_file.close();
+      ROS_INFO("yaml saved");
+    }
+  }
 }
 
 } // end namespace savegoal_rviz_plugin

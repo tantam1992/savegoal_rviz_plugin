@@ -29,11 +29,6 @@ add_definitions(-DQT_NO_KEYWORDS)
 ## Here we specify the list of source files.
 ## The generated MOC files are included automatically as headers.
 set(SRC_FILES
-  src/drive_widget.cpp
-  src/imu_display.cpp
-  src/imu_visual.cpp
-  src/plant_flag_tool.cpp
-  src/teleop_panel.cpp
   src/save_goal_tool.cpp
 )
 
@@ -70,11 +65,5 @@ install(FILES
   plugin_description.xml
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
-install(DIRECTORY media/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/media)
-
 install(DIRECTORY icons/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/icons)
-
-catkin_install_python(PROGRAMS scripts/send_test_msgs.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
